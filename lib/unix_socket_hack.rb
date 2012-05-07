@@ -3,12 +3,12 @@ require 'socket'
 # support unixsocket to tcp only supproted library.
 # @example
 #   require 'unix_socket_hack'
-#   UNIXSocketHack.hack({ 'unixsocket:9999' => '/path/to/unix.sock' })
+#   UNIXSocketHack.apply({ 'unixsocket:9999' => '/path/to/unix.sock' })
 #   sock = TCPSocket.new('unixsocket', 9999)
 #   #=> UNIXSocket
 #
 class UNIXSocketHack
-  def self.hack(mapping)
+  def self.apply(mapping)
     TCPSocket.singleton_class.class_eval do
       alias_method :new_without_unixsockhack, :new
 
