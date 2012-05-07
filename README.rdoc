@@ -5,7 +5,7 @@ apply patch TCPSocket to support unixsocket for tcp only supported library.
 == Example
 
     require 'unix_socket_hack'
-    UNIXSocketHack.hack({ 'unixsocket:9999' => '/path/to/unix.sock' })
+    UNIXSocketHack.apply({ 'unixsocket:9999' => '/path/to/unix.sock' })
     sock = TCPSocket.new('unixsocket', 9999)
     #=> UNIXSocket
 
