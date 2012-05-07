@@ -1,6 +1,17 @@
 = unix_socket_hack
 
-Description goes here.
+apply patch TCPSocket to support unixsocket for tcp only supported library.
+
+== Example
+
+    require 'unix_socket_hack'
+    UNIXSocketHack.hack({ 'unixsocket:9999' => '/path/to/unix.sock' })
+    sock = TCPSocket.new('unixsocket', 9999)
+    #=> UNIXSocket
+
+    # example using memcache-client.
+    require 'memcache'
+    memd = MemCache.new(['unixsocket:9999'])
 
 == Contributing to unix_socket_hack
  
