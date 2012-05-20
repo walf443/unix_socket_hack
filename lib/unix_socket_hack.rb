@@ -12,11 +12,11 @@ class UNIXSocketHack
     TCPSocket.singleton_class.class_eval do
       alias_method :new_without_unixsockhack, :new
 
-      define_method(:new_with_unixsockhack) do |host,service|
-        if val = mapping[[host, service].join(":")]
+      define_method(:new_with_unixsockhack) do |remote_host, remote_port, local_host=nil, local_port=nil|
+        if val = mapping[[remote_host, remote_port].join(":")]
           return UNIXSocket.new(val)
         else
-          return new_without_unixsockhack(host, service)
+          return new_without_unixsockhack(remote_host, remote_port, local_host, local_port)
         end
       end
 
