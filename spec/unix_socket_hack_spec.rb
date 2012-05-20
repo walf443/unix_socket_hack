@@ -5,7 +5,7 @@ describe "UnixSocketHack" do
   before(:all) do
     tmp = Tempfile.new('unixsocket')
     @unix_sock_path = tmp.path + ".sock"
-    UNIXSocketHack.hack({'localhost:9999' => @unix_sock_path })
+    UNIXSocketHack.apply({'localhost:9999' => @unix_sock_path })
 
     @unix_server = UNIXServer.open(@unix_sock_path )
     @tcp_server  = TCPServer.open('localhost', 9999)
