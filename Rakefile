@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "unix_socket_hack"
   gem.homepage = "http://github.com/walf443/unix_socket_hack"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{apply patch TCPSocket to support unixsocket for tcp only supported library.}
+  gem.description = %{apply patch TCPSocket to support unixsocket for tcp only supported library.}
   gem.email = "walf443@gmail.com"
   gem.authors = ["Keiji, Yoshimi"]
   # dependencies defined in Gemfile

@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Keiji, Yoshimi"]
   s.date = "2012-06-04"
-  s.description = "TODO: longer description of your gem"
+  s.description = "apply patch TCPSocket to support unixsocket for tcp only supported library."
   s.email = "walf443@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -26,13 +26,14 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/unix_socket_hack.rb",
     "spec/spec_helper.rb",
-    "spec/unix_socket_hack_spec.rb"
+    "spec/unix_socket_hack_spec.rb",
+    "unix_socket_hack.gemspec"
   ]
   s.homepage = "http://github.com/walf443/unix_socket_hack"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.21"
-  s.summary = "TODO: one-line summary of your gem"
+  s.summary = "apply patch TCPSocket to support unixsocket for tcp only supported library."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
