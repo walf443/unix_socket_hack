@@ -8,8 +8,8 @@ describe "UnixSocketHack" do
     UNIXSocketHack.apply({'localhost:9999' => @unix_sock_path })
 
     @unix_server = UNIXServer.open(@unix_sock_path )
-    @tcp_server  = TCPServer.open('localhost', 9999)
-    @tcp_server2  = TCPServer.open('localhost', 9998)
+    @tcp_server  = TCPServer.new(nil, 9999)
+    @tcp_server2  = TCPServer.new(nil, 9998)
   end
   after(:all) do
     @unix_server.close
