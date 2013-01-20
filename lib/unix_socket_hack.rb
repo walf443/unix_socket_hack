@@ -16,7 +16,15 @@ class UNIXSocketHack
         if val = mapping[[remote_host, remote_port].join(":")]
           return UNIXSocket.new(val)
         else
-          return new_without_unixsockhack(remote_host, remote_port, local_host, local_port)
+          if local_port
+            return new_without_unixsockhack(remote_host, remote_port, local_host, local_port)
+          else
+            if local_host
+              return new_without_unixsockhack(remote_host, remote_port, local_host)
+            else
+              return new_without_unixsockhack(remote_host, remote_port)
+            end
+          end
         end
       end
 
