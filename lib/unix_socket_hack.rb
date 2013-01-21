@@ -11,6 +11,7 @@ class UNIXSocketHack
   def self.apply(mapping)
     TCPSocket.singleton_class.class_eval do
       alias_method :new_without_unixsockhack, :new
+      alias_method :open_without_unixsockhack, :open
 
       define_method(:new_with_unixsockhack) do |remote_host, remote_port, local_host=nil, local_port=nil|
         if val = mapping[[remote_host, remote_port].join(":")]
@@ -28,7 +29,24 @@ class UNIXSocketHack
         end
       end
 
+      define_method(:open_with_unixsockhack) do |remote_host, remote_port, local_host=nil, local_port=nil|
+        if val = mapping[[remote_host, remote_port].join(":")]
+          return UNIXSocket.new(val)
+        else
+          if local_port
+            return open_without_unixsockhack(remote_host, remote_port, local_host, local_port)
+          else
+            if local_host
+              return open_without_unixsockhack(remote_host, remote_port, local_host)
+            else
+              return open_without_unixsockhack(remote_host, remote_port)
+            end
+          end
+        end
+      end
+
       alias_method :new, :new_with_unixsockhack
+      alias_method :open, :open_with_unixsockhack
     end
 
     UNIXSocket.class_eval do

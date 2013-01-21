@@ -17,18 +17,37 @@ describe "UnixSocketHack" do
     FileUtils.rm(@unix_sock_path)
   end
 
-  it "connect to unixsocket:9999 should be UNIXSock" do 
-    sock = TCPSocket.new('localhost', 9999);
-    sock.class.should == UNIXSocket
+  describe "new" do
+    it "connect to unixsocket:9999 should be UNIXSock" do 
+      sock = TCPSocket.new('localhost', 9999);
+      sock.class.should == UNIXSocket
+    end
+
+    it "connect to localhost:9998 should be TCPSocket" do 
+      sock = TCPSocket.new('localhost', 9998);
+      sock.class.should == TCPSocket
+    end
+
+    it "connect to 127.0.0.1:9999 should be TCPSocket" do 
+      sock = TCPSocket.new('127.0.0.1', 9999);
+      sock.class.should == TCPSocket
+    end
   end
 
-  it "connect to localhost:9998 should be TCPSocket" do 
-    sock = TCPSocket.new('localhost', 9998);
-    sock.class.should == TCPSocket
-  end
+  describe "open" do
+    it "connect to unixsocket:9999 should be UNIXSock" do 
+      sock = TCPSocket.open('localhost', 9999);
+      sock.class.should == UNIXSocket
+    end
 
-  it "connect to 127.0.0.1:9999 should be TCPSocket" do 
-    sock = TCPSocket.new('127.0.0.1', 9999);
-    sock.class.should == TCPSocket
+    it "connect to localhost:9998 should be TCPSocket" do 
+      sock = TCPSocket.open('localhost', 9998);
+      sock.class.should == TCPSocket
+    end
+
+    it "connect to 127.0.0.1:9999 should be TCPSocket" do 
+      sock = TCPSocket.open('127.0.0.1', 9999);
+      sock.class.should == TCPSocket
+    end
   end
 end
